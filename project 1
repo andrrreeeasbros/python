@@ -41,7 +41,7 @@ class ArithmeticQuiz(Exercise):
     def lets_do_it(self):
         while True:
             print(f"What is {self.first} {self.operation} {self.second}?")
-            user_answer = float(input("Your answer: "))
+            user_answer = float(input("Ваш ответ: "))
             result = self.check_answer(user_answer)
             if result == "correct":
                 print("ПОЗДРАВЛЯЮ! ВАШ ОТВЕТ ВЕРНЫЙ!!!.")
