@@ -1,0 +1,67 @@
+
+
+from random import randrange, choice
+
+class Exercise:
+    def __init__(self, first: int, second: int, operation: str):
+        self.first = first
+        self.second = second
+        self.operation = operation
+        self.data = {}
+        self.res = None
+
+    def correct_answer(self):
+        if self.operation == "+":
+            self.res = self.first + self.second
+        elif self.operation == "*":
+            self.res = self.first * self.second
+        elif self.operation == "//":
+            self.res = self.first // self.second
+        elif self.operation == "-":
+            self.res = self.first - self.second
+        return self.res
+
+    def check_answer(self, new_answer):
+        result = self.correct_answer()
+        if new_answer == result:
+            return "correct"
+        else:
+            self.first = randrange(1, 100)
+            self.second = randrange(1, 100)
+            return "try again"
+
+class ArithmeticQuiz(Exercise):
+    def __init__(self):
+        first = randrange(1, 100)
+        second = randrange(1, 100)
+        if first < second:
+            first, second = second, first
+        operation = choice(['+', '-', "//", "*"])
+        super().__init__(first, second, operation)
+        self.data = {"Верно": 0, "НЕверно": 0}
+
+    def lets_do_it(self):
+        while True:
+            print(f"What is {self.first} {self.operation} {self.second}?")
+            user_answer = float(input("Your answer: "))
+            result = self.check_answer(user_answer)
+            if result == "correct":
+                print("ПОЗДРАВЛЯЮ! ВАШ ОТВЕТ ВЕРНЫЙ!!!.")
+                self.data["Верно"] += 1
+            else:
+                print("Неверно.Попробуйте еще раз")
+                self.data["НЕверно"] += 1
+            print(self.data)
+
+
+            print("Желаете продолжить?\n1 - Да\n2 - НЕТ")
+            choice = int(input("user: "))
+            if choice == 1:
+                continue
+            elif choice == 2:
+                break
+            else:
+                print("НЕТ ТАКОГО ВАРИАНТА ОТВЕТА")
+
+quiz = ArithmeticQuiz()
+quiz.lets_do_it()
