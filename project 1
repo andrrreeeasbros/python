@@ -61,5 +61,6 @@ class ArithmeticQuiz(Exercise):
             else:
                 print("НЕТ ТАКОГО ВАРИАНТА ОТВЕТА")
 
+
 quiz = ArithmeticQuiz()
 quiz.lets_do_it()
