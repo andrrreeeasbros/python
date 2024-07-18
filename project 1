@@ -22,11 +22,11 @@ class Exercise:
     def check_answer(self, new_answer):
         result = self.correct_answer()
         if new_answer == result:
-            return "correct"
-        else:
             self.first = randrange(1, 100)
             self.second = randrange(1, 100)
-            return "try again"
+            return "correct"
+        else:
+            return
 
 class ArithmeticQuiz(Exercise):
     def __init__(self):
@@ -57,6 +57,7 @@ class ArithmeticQuiz(Exercise):
             if choice == 1:
                 continue
             elif choice == 2:
+                print(f"Ваш результат {self.data}")
                 break
             else:
                 print("НЕТ ТАКОГО ВАРИАНТА ОТВЕТА")
