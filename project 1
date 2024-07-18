@@ -39,29 +39,50 @@ class ArithmeticQuiz(Exercise):
         self.data = {"Верно": 0, "НЕверно": 0}
 
     def lets_do_it(self):
-        while True:
-            print(f"What is {self.first} {self.operation} {self.second}?")
-            user_answer = float(input("Ваш ответ: "))
-            result = self.check_answer(user_answer)
-            if result == "correct":
-                print("ПОЗДРАВЛЯЮ! ВАШ ОТВЕТ ВЕРНЫЙ!!!.")
-                self.data["Верно"] += 1
-            else:
-                print("Неверно.Попробуйте еще раз")
-                self.data["НЕверно"] += 1
-            print(self.data)
+            while True:
+                print("Выберите уровень сложности\n1-Легко\n2-Нормально\n3-Сложно\n4-НЕРЕАЛЬНО")
+                choice_lvl = int(input("user: "))
+                if choice_lvl == 1:
+                    self.operation = choice(['+', '-'])
+                    self.first = randrange(1, 10)
+                    self.second = randrange(1, 10)
+                elif choice_lvl == 2:
+                    self.operation = choice(['+', '-', '*', '//'])
+                    self.first = randrange(1, 100)
+                    self.second = randrange(1, 100)
+                elif choice_lvl == 3:
+                    self.operation = choice(['*', '//'])
+                    self.first = randrange(1, 1000)
+                    self.second = randrange(1, 1000)
+                elif choice_lvl == 4:
+                    self.operation = choice(['*', '//'])
+                    self.first = randrange(1, 100000)
+                    self.second = randrange(1, 100000)
+                else:
+                    print("НЕТ ТАКОГО ВАРИАНТА ОТВЕТА")
 
+                print(f"What is {self.first} {self.operation} {self.second}?")
+                user_answer = float(input("Ваш ответ: "))
+                result = self.check_answer(user_answer)
+                if result == "correct":
+                    print("ПОЗДРАВЛЯЮ! ВАШ ОТВЕТ ВЕРНЫЙ!!!.")
+                    self.data["Верно"] += 1
+                else:
+                    print("Неверно. Попробуйте еще раз")
+                    self.data["НЕверно"] += 1
+                print(self.data)
 
-            print("Желаете продолжить?\n1 - Да\n2 - НЕТ")
-            choice = int(input("user: "))
-            if choice == 1:
-                continue
-            elif choice == 2:
-                print(f"Ваш результат {self.data}")
-                break
-            else:
-                print("НЕТ ТАКОГО ВАРИАНТА ОТВЕТА")
-
+                print("Желаете продолжить?\n1 - Да\n2 - НЕТ")
+                user_choice = int(input("user: "))
+                if user_choice == 1:
+                    continue
+                elif user_choice == 2:
+                    print(f"Ваш результат {self.data}")
+                    if self.data["Верно"] >= 10:
+                        print("Вы молодец! У вас больше 10 правильных ответов")
+                    break
+                else:
+                    print("НЕТ ТАКОГО ВАРИАНТА ОТВЕТА")
 
 quiz = ArithmeticQuiz()
 quiz.lets_do_it()
